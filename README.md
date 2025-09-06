@@ -15,27 +15,27 @@ Introduction to PromQL, the Prometheus query language.
 
 утилизация CPU для nodeexporter (в процентах, 100-idle);
 ```
--(sum by(instance) (irate(node_cpu_seconds_total{instance="$node",job="$job", mode!="idle"}[$__rate_interval])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{instance="$node",job="$job"}[$__rate_interval])))) * 100
+(sum by(instance) (irate(node_cpu_seconds_total{instance="$node",job="$job", mode!="idle"}[$__rate_interval])) / on(instance) group_left sum by (instance)((irate(node_cpu_seconds_total{instance="$node",job="$job"}[$__rate_interval])))) * 100
 ```
 CPULA 1/5/15;
 ```
--node_load1{job="$job",instance="$node"}
+node_load1{job="$job",instance="$node"}
 ```
 ```
--node_load5{job="$job",instance="$node"}
+node_load5{job="$job",instance="$node"}
 ```
 ```
--node_load15{job="$job",instance="$node"}
+node_load15{job="$job",instance="$node"}
 ```
 
 количество свободной оперативной памяти;
 ```
--100 - ((avg_over_time(node_memory_MemAvailable_bytes{instance="$node",job="$job"}[$__rate_interval]) * 100) / avg_over_time(node_memory_MemTotal_bytes{instance="$node",job="$job"}[$__rate_interval]))
+100 - ((avg_over_time(node_memory_MemAvailable_bytes{instance="$node",job="$job"}[$__rate_interval]) * 100) / avg_over_time(node_memory_MemTotal_bytes{instance="$node",job="$job"}[$__rate_interval]))
 ```
 
 количество места на файловой системе.
 ```
--100 - ((avg_over_time(node_filesystem_avail_bytes{instance="$node",job="$job",mountpoint="/",fstype!="rootfs"}[$__rate_interval]) * 100) / avg_over_time(node_filesystem_size_bytes{instance="$node",job="$job",mountpoint="/",fstype!="rootfs"}[$__rate_interval]))
+100 - ((avg_over_time(node_filesystem_avail_bytes{instance="$node",job="$job",mountpoint="/",fstype!="rootfs"}[$__rate_interval]) * 100) / avg_over_time(node_filesystem_size_bytes{instance="$node",job="$job",mountpoint="/",fstype!="rootfs"}[$__rate_interval]))
 ```
 
 Для решения этого задания приведите promql-запросы для выдачи этих метрик, а также скриншот получившейся Dashboard.
